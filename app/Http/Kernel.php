@@ -3,6 +3,9 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Savrock\Siop\Http\Middleware\PatternAnalysis;
+use Savrock\Siop\Http\Middleware\SqlInjectionProtection;
+use Savrock\Siop\Http\Middleware\XssProtection;
 
 class Kernel extends HttpKernel
 {
@@ -21,6 +24,9 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+//        XssProtection::class,
+//        SqlInjectionProtection::class,
+//        PatternAnalysis::class
     ];
 
     /**
@@ -40,7 +46,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];

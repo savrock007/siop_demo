@@ -140,4 +140,13 @@ class User extends Authenticatable
 
         return $isFollowing;
     }
+
+    public function canAccessSiopPanel(): bool
+    {
+        return true;
+        if ($this->id == 1) {
+            return true;
+        }
+        return false;
+    }
 }

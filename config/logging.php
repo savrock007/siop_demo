@@ -126,6 +126,16 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'siop' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/siop.log'),
+            'level' => 'debug',
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => "[%datetime%] %message% %context%\n",
+            ],
+            'days' => 2,
+        ],
     ],
 
 ];

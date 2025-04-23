@@ -33,7 +33,6 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         BlockIps::class,
-        // \App\Http\Middleware\TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,

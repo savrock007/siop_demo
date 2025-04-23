@@ -21,3 +21,4 @@ yarn-error.log
 docker_stats*
 monitoring*
 .DS_Store
+conduit.sqlite

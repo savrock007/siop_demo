@@ -66,7 +66,7 @@ return [
    |
    */
 
-    'blocking_method' => 'fail2ban', //middleware or fail2ban
+    'blocking_method' => 'middleware', //middleware or fail2ban
 
 
     /*
@@ -94,16 +94,8 @@ return [
     //Specify generator class for metadata
     'meta_generator' => \Savrock\Siop\MetaGenerator::class,
 
-    //Specify which categories of Security events send notification
-    'notifications' => [
-        "xss" => true,
-        "sql" => true,
-        "custom" => true,
-
-    ],
-
     //Honeypot routes
-    'enable_honeypots' => false,
+    'enable_honeypots' => true,
     'honeypot_routes' => [
         'wp-admin',
         'wp-login.php',
@@ -111,6 +103,6 @@ return [
     ],
 
 
-    'enable_pattern_analysis' => false,
+    'enable_pattern_analysis' => true,
     'pattern_analysis_cooldown' => 0.5 //in minutes
 ];

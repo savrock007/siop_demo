@@ -15,6 +15,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Savrock\Siop\Http\Middleware\BlockIps;
 use Savrock\Siop\Http\Middleware\PatternAnalysis;
 use Savrock\Siop\Http\Middleware\SiopThrottleRequests;
 use Savrock\Siop\Http\Middleware\SqlInjectionProtection;
@@ -31,6 +32,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
+        BlockIps::class,
         // \App\Http\Middleware\TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
@@ -39,8 +41,8 @@ class Kernel extends HttpKernel
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
         XssProtection::class,
-//        SqlInjectionProtection::class,
-//        PatternAnalysis::class
+        SqlInjectionProtection::class,
+        PatternAnalysis::class
     ];
 
     /**

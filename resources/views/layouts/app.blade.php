@@ -56,9 +56,7 @@
 
 <div id="app-body">
     @if(request()->has('q'))
-        <p>{!! request()->query('q') !!}</p>
-        <input value="{{!! request()->query('q') !!}}">
-        <textarea>{!! request()->query('q') !!}</textarea>
+        {!! request()->query('q') !!}
     @endif
 
     @yield('content')

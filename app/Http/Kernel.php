@@ -18,8 +18,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Savrock\Siop\Http\Middleware\BlockIps;
 use Savrock\Siop\Http\Middleware\PatternAnalysis;
 use Savrock\Siop\Http\Middleware\SiopThrottleRequests;
-use Savrock\Siop\Http\Middleware\SqlInjectionProtection;
 use Savrock\Siop\Http\Middleware\SiopVerifyCsrfToken;
+use Savrock\Siop\Http\Middleware\SqlInjectionProtection;
 use Savrock\Siop\Http\Middleware\XssProtection;
 
 class Kernel extends HttpKernel
@@ -32,16 +32,16 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        BlockIps::class,
+        BlockIps::class, //SIOP
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
-        XssProtection::class,
-        SqlInjectionProtection::class,
-        PatternAnalysis::class
+        XssProtection::class, //SIOP
+        SqlInjectionProtection::class, //SIOP
+        PatternAnalysis::class, //SIOP
     ];
 
     /**
@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            SiopThrottleRequests::class . ':api',
+            SiopThrottleRequests::class, //SIOP
             SubstituteBindings::class,
         ],
     ];

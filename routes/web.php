@@ -30,7 +30,7 @@ use App\Http\Controllers\Htmx\HTMXSettingsController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/global-feed', [HomeController::class, 'index']);
 
-Route::get('/your-feed', [HomeController::class, 'yourFeed'])->middleware('auth');
+Route::get('/your-feed', [HomeController::class, 'yourFeed'])->middleware(['auth','siop.throttle:50']); //SIOP THROTTLE MIDDLEWARE
 Route::get('/tag-feed/{tag}', [HomeController::class, 'tags']);
 
 Route::get('/sign-in', [SignInController::class, 'index'])->middleware('guest')->name('login');
@@ -53,7 +53,7 @@ Route::prefix('htmx')->group(function() {
 
     Route::get('/home', [HTMXHomeController::class, 'index']);
     Route::post('/home/articles/{article}/favorite', [HTMXHomeController::class, 'favorite']);
-    
+
     Route::get('/articles/{article}', [HTMXArticleController::class, 'show']);
     Route::post('/articles/{article}/favorite', [HTMXArticleController::class, 'favorite']);
     Route::post('/articles/follow-user/{user}', [HTMXArticleController::class, 'follow']);
@@ -71,7 +71,7 @@ Route::prefix('htmx')->group(function() {
     Route::post('/editor', [HTMXEditorController::class, 'store']);
     Route::get('/editor/{article}', [HTMXEditorController::class, 'edit']);
     Route::post('/editor/{article}', [HTMXEditorController::class, 'update']);
-    
+
     Route::get('/popular-tags', [HTMXHomeController::class, 'popularTags']);
 
     Route::get('/sign-in', [HTMXSignInController::class, 'index']);
